@@ -15,6 +15,7 @@ import {
   IconSearch,
   IconSettings,
   IconUsers,
+  IconChecklist,
 } from "@tabler/icons-react";
 
 import { NavDocuments } from "~/components/nav-documents";
@@ -30,13 +31,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "~/components/ui/sidebar";
-import { ListCheckIcon } from "lucide-react";
 
 const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "/avatars/shadcn.jpeg",
   },
   navMain: [
     {
@@ -47,7 +47,7 @@ const data = {
     {
       title: "Tasks",
       url: "/tasks",
-      icon: ListCheckIcon,
+      icon: IconChecklist,
     },
     {
       title: "Lifecycle",
