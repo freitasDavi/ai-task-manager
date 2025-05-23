@@ -16,6 +16,7 @@ import {
   IconSettings,
   IconUsers,
   IconChecklist,
+  IconUser,
 } from "@tabler/icons-react";
 
 import { NavDocuments } from "~/components/nav-documents";
@@ -43,6 +44,11 @@ const data = {
       title: "Dashboard",
       url: "/",
       icon: IconDashboard,
+    },
+    {
+      title: "Users",
+      url: "/users",
+      icon: IconUser,
     },
     {
       title: "Tasks",

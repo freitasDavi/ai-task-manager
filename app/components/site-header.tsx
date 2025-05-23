@@ -7,6 +7,9 @@ const ROUTE_TITLES: Record<string, string> = {
   "/": "Dashboard",
   "/dashboard": "Dashboard",
   "/tasks": "Tasks",
+  "/users": "Users",
+  "/tasks/new": "Nova Task",
+  "/tasks/edit": "Editar Task",
 };
 
 export function SiteHeader() {
