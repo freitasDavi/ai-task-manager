@@ -1,5 +1,3 @@
-import { turso } from "~/turso";
-import type { Route } from "./+types/tasks";
 import {
   Table,
   TableHeader,
@@ -9,31 +7,16 @@ import {
   TableCell,
 } from "~/components/ui/table";
 import { Badge } from "~/components/ui/badge";
-
-interface User {
-  id: number;
-  email: string;
-  password_hash: string;
-  name: string;
-  created_at: string;
-  updated_at: string;
-  last_login_at: string | null;
-  is_active: number;
-}
-
-interface LoaderData {
-  users: User[];
-}
+import type { Route } from "./+types/users";
+import prisma from "prisma/prisma";
 
 export async function loader() {
-  const response = await turso.execute("SELECT * FROM USERS");
-
   return {
-    users: response.rows,
+    users: await prisma.user.findMany(),
   };
 }
 
-export default function ({ loaderData }: { loaderData: LoaderData }) {
+export default function ({ loaderData }: Route.ComponentProps) {
   const { users } = loaderData;
 
   return (
@@ -45,9 +28,7 @@ export default function ({ loaderData }: { loaderData: LoaderData }) {
             <TableHead>ID</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Email</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Last Login</TableHead>
-            <TableHead>Created At</TableHead>
+            <TableHead>Age</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -56,19 +37,7 @@ export default function ({ loaderData }: { loaderData: LoaderData }) {
               <TableCell>{user.id}</TableCell>
               <TableCell>{user.name}</TableCell>
               <TableCell>{user.email}</TableCell>
-              <TableCell>
-                <Badge variant={user.is_active ? "default" : "destructive"}>
-                  {user.is_active ? "Active" : "Inactive"}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                {user.last_login_at
-                  ? new Date(user.last_login_at).toLocaleString()
-                  : "Never"}
-              </TableCell>
-              <TableCell>
-                {new Date(user.created_at).toLocaleString()}
-              </TableCell>
+              <TableCell>{user.age}</TableCell>
             </TableRow>
           ))}
         </TableBody>
